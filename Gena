@@ -1,21 +1,24 @@
-def sum_of_digits(n):
-    """Функция для вычисления суммы цифр числа n."""
-    return sum(int(digit) for digit in str(n))
+def calculate_ratio(number):
+    """
+    Вычисляет отношение числа к сумме его цифр.
 
-def find_max_ratio():
-    max_ratio = 0
-    max_number = 0
-    
-    for number in range(100, 1000):  # Перебираем все трехзначные числа
-        digit_sum = sum_of_digits(number)
-        if digit_sum != 0:  # Проверяем, чтобы сумма цифр не была равна нулю
-            ratio = number / digit_sum
-            if ratio > max_ratio:
-                max_ratio = ratio
-                max_number = number
-                
-    return max_number, max_ratio
+    Args:
+        number: Целое число.
 
-# Запуск функции и вывод результата
-max_number, max_ratio = find_max_ratio()
-print(f"Наибольшее значение отношения: {max_ratio:.2f} для числа {max_number}")
+    Returns:
+        float: Отношение числа к сумме его цифр, или None, если сумма цифр равна 0.
+    """
+    # Преобразуем число в строку, чтобы итерироваться по цифрам
+    number_str = str(number)
+    digit_sum = 0
+    for digit in number_str:
+        digit_sum += int(digit)
+
+    if digit_sum == 0:
+        return None  # Избегаем деления на ноль
+    else:
+        return number / digit_sum
+
+def get_user_input():
+    """
+    Запрашивает у пользователя трехзначное число.
