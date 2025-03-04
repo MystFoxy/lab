@@ -1,1 +1,25 @@
 
+Returns:
+        int: Трехзначное число, введенное пользователем.
+        Возвращает None, если ввод не является числом или не трехзначное.
+    """
+    while True:
+        try:
+            number = int(input("Введите трехзначное число: "))
+            if 100 <= number <= 999:
+                return number
+            else:
+                print("Пожалуйста, введите трехзначное число (от 100 до 999).")
+        except ValueError:
+            print("Некорректный ввод. Пожалуйста, введите число.")
+
+
+if __name__ == "__main__":
+    number = get_user_input()
+
+    if number is not None:
+        ratio = calculate_ratio(number)
+        if ratio is not None:
+            print(f"Отношение числа {number} к сумме его цифр: {ratio}")
+        else:
+            print("Сумма цифр числа равна нулю. Отношение не определено.")
