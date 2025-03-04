@@ -1,1 +1,22 @@
 
+def sum_of_digits(n):
+    """Функция для вычисления суммы цифр числа n."""
+    return sum(int(digit) for digit in str(n))
+
+def find_max_ratio():
+    max_ratio = 0
+    max_number = 0
+    
+    for number in range(100, 1000):  # Перебираем все трехзначные числа
+        digit_sum = sum_of_digits(number)
+        if digit_sum != 0:  # Проверяем, чтобы сумма цифр не была равна нулю
+            ratio = number / digit_sum
+            if ratio > max_ratio:
+                max_ratio = ratio
+                max_number = number
+                
+    return max_number, max_ratio
+
+# Запуск функции и вывод результата
+max_number, max_ratio = find_max_ratio()
+print(f"Наибольшее значение отношения: {max_ratio:.2f} для числа {max_number}")
