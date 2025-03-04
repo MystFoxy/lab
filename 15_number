@@ -1,1 +1,49 @@
+def calculate_ratio(number):
+    """
+    Вычисляет отношение числа к сумме его цифр.
 
+    Args:
+        number: Целое число.
+
+    Returns:
+        float: Отношение числа к сумме его цифр, или None, если сумма цифр равна 0.
+    """
+    # Преобразуем число в строку, чтобы итерироваться по цифрам
+    number_str = str(number)
+    digit_sum = 0
+    for digit in number_str:
+        digit_sum += int(digit)
+
+    if digit_sum == 0:
+        return None  # Избегаем деления на ноль
+    else:
+        return number / digit_sum
+
+def get_user_input():
+    """
+    Запрашивает у пользователя трехзначное число.
+
+    Returns:
+        int: Трехзначное число, введенное пользователем.
+        Возвращает None, если ввод не является числом или не трехзначное.
+    """
+    while True:
+        try:
+            number = int(input("Введите трехзначное число: "))
+            if 100 <= number <= 999:
+                return number
+            else:
+                print("Пожалуйста, введите трехзначное число (от 100 до 999).")
+        except ValueError:
+            print("Некорректный ввод. Пожалуйста, введите число.")
+
+
+if __name__ == "__main__":
+    number = get_user_input()
+
+    if number is not None:
+        ratio = calculate_ratio(number)
+        if ratio is not None:
+            print(f"Отношение числа {number} к сумме его цифр: {ratio}")
+        else:
+            print("Сумма цифр числа равна нулю. Отношение не определено.")
